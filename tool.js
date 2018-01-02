@@ -9,11 +9,22 @@
 
 module.exports = Tool;
 
-function Tool() {
+/*
+ * The handlers argument is an object with methods for each
+ * subcommand.
+ */
+function Tool( handlers ) {
     this.settings = { };
     this.options = {};
     this.commands = {};
     this.option( ["--verbose","-v"], false );
+
+    if ( typeof handlers !== 'object' ) return;
+    function is_method( property ) {
+        return typeof handlers[property] === 'function';
+    }
+    var methods = Object.getOwnPropertyNames(handlers).filter( is_method );
+    methods.map( (method) => this.command(method, handlers[method]) );
 }
 
 /*

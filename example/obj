@@ -1,0 +1,19 @@
+
+const Tool = require('tool');
+
+var handlers = {
+    show_settings: function () {
+        var keys = Object.keys( this );
+        keys.map( (name) => console.log( "Option " + name + " is " + this[name] ) );
+    },
+    echo: function ( arg ) {
+        console.log( arg );
+    }
+};
+
+var tool = new Tool( handlers );
+
+tool.option( ["--config","-c"] );
+tool.option( ["--count","-C"], 1 );
+
+tool.evaluate( process.argv );
