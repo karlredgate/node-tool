@@ -51,7 +51,7 @@ Tool.prototype.help = function () {
     for ( var option in this.options ) {
         console.log( option );
     }
-    for ( var coommand in this.commands ) {
+    for ( var command in this.commands ) {
         if ( command === 'help' ) continue;
         console.log( command );
     }
