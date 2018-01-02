@@ -1,0 +1,15 @@
+
+const Tool = require('tool');
+
+var tool = new Tool();
+
+tool.option( ["--config","-c"] );
+tool.option( ["--count","-C"], 1 );
+
+function show_settings() {
+    this.map( (name) => console.log( "Option " + name + " is " + this[name] ) );
+}
+
+tool.command( "settings", show_settings );
+
+tool.evaluate( process.argv );
