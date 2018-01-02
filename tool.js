@@ -10,11 +10,10 @@
 module.exports = Tool;
 
 function Tool() {
-    this.settings = {
-        verbose: false
-    };
+    this.settings = { };
     this.options = {};
     this.commands = {};
+    this.option( ["--verbose","-v"], false );
 }
 
 /*
