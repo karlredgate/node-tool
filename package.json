@@ -1,0 +1,28 @@
+{
+  "name": "tool",
+  "productName": "tool",
+  "version": "0.1.0",
+  "description": "Library for command line tools",
+  "main": "tool.js",
+  "scripts": {
+    "package-all": "npm run package -- --all"
+  },
+  "author": {
+    "name": "Karl Redgate",
+    "email": "karl.redgate@gmail.com",
+    "url": "https://github.com/karlredgate"
+  },
+  "license": "APACHE",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/karlredgate/node-tool"
+  },
+  "bugs": {
+    "url": "https://github.com/karlredgate/node-tool/issues"
+  },
+  "homepage": "https://github.com/karlredgate/node-tool",
+  "devDependencies": {
+  },
+  "dependencies": {
+  }
+}
