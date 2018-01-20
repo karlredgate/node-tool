@@ -76,7 +76,6 @@ Tool.prototype.option = function ( arg, default_value ) {
     this.options[primary] = function (value) {
         var settings = this;
         settings[name] = value;
-        console.log( "Set option " + name + " to " + value );
     };
 
     if ( Array.isArray(arg) === false ) return;
