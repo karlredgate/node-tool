@@ -111,6 +111,10 @@ function parse_option( arg ) {
 
 /*
  * Pass in process.argv
+ *
+ * First filter all options from the command line and store their
+ * settings, then look the the subcommand in the tool command list.
+ * Pass remaining arguments as arguments to the subcommand.
  */
 Tool.prototype.evaluate = function ( argv ) {
     const node_exec = argv.shift();
