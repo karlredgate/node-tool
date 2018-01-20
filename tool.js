@@ -23,9 +23,40 @@ function Tool( handlers ) {
     function is_method( property ) {
         return typeof handlers[property] === 'function';
     }
+
+    /*
+     * For each member of "handlers" whose value is a function, add
+     * it to the "commands" member of this Tool object with a key of
+     * the slot name.
+     */
     var methods = Object.getOwnPropertyNames(handlers).filter( is_method );
     methods.map( (method) => this.command(method, handlers[method]) );
+    // do the same for OwnProperties that are arrays as bool options
+    // and objects as options with default values
 }
+
+/*
+ * Attach a function to the commands member object with the key
+ * "name".  When the tool is evaluated, if the subcommand is present
+ * in this "commands" object, then that function will be called.
+ */
+Tool.prototype.command = function ( name, callback ) {
+    this.commands[name] = callback;
+};
+
+/*
+ * Alias one command name for another.  Throw an error if an
+ * alias already exists - it might overwrite a primary command.
+ */
+Tool.prototype.alias = function ( name, aliases ) {
+    function create_alias( aka ) {
+        if ( typeof this.commands[aka] !== 'undefined' ) {
+            throw "cannot redefine alias";
+        }
+        this.commands[aka] = this.commands[name];
+    }
+    aliases.map( create_alias );
+};
 
 /*
  * It would be nice to allow for default values for these
@@ -51,10 +82,6 @@ Tool.prototype.option = function ( arg, default_value ) {
     if ( Array.isArray(arg) === false ) return;
     var o = this.options;
     arg.map( (e) => o[e] = o[primary] );
-};
-
-Tool.prototype.command = function ( name, callback ) {
-    this.commands[name] = callback;
 };
 
 Tool.prototype.help = function () {
