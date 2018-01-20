@@ -109,6 +109,14 @@ function parse_option( arg ) {
 }
 
 /*
+ * Validate that the options make sense.  This is expected
+ * to be overridden by descendant objects.
+ */
+Tool.prototype.validate = function () {
+    // do nothing here
+}
+
+/*
  * Pass in process.argv
  *
  * First filter all options from the command line and store their
@@ -120,6 +128,8 @@ Tool.prototype.evaluate = function ( argv ) {
     const script = argv.shift();
 
     argv = argv.filter( parse_option.bind(this) );
+    this.validate();
+
     var command_name = argv.shift();
     var command       = this.commands[ command_name ];
     if ( typeof command === 'undefined' ) {
