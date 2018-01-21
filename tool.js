@@ -139,4 +139,9 @@ Tool.prototype.evaluate = function ( argv ) {
     command.apply( this.settings, argv );
 };
 
+module.exports.die = function ( message ) {
+    console.error( message );
+    process.exit( -1 );
+}
+
 /* vim: set autoindent expandtab sw=4 syntax=javascript: */
