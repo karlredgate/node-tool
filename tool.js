@@ -55,7 +55,7 @@ Tool.prototype.alias = function ( name, aliases ) {
         }
         this.commands[aka] = this.commands[name];
     }
-    aliases.map( create_alias );
+    aliases.map( create_alias.bind(this) );
 };
 
 /*
