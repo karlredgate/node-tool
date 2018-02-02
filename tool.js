@@ -85,12 +85,17 @@ Tool.prototype.option = function ( arg, default_value ) {
 };
 
 Tool.prototype.help = function () {
+    console.log( "Options:" );
+    console.log( " " );
     for ( var option in this.options ) {
-        console.log( option );
+        console.log( "    " + option );
     }
+    console.log( " " );
+    console.log( "Commands:" );
+    console.log( " " );
     for ( var command in this.commands ) {
         if ( command === 'help' ) continue;
-        console.log( command );
+        console.log( "    " + command );
     }
 }
 
