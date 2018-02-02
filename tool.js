@@ -18,6 +18,7 @@ function Tool( handlers ) {
     this.options = {};
     this.commands = {};
     this.option( ["--verbose","-v"], false );
+    this.option( ["--json"], false ); // request that output be json formatted
 
     if ( typeof handlers !== 'object' ) return;
     function is_method( property ) {
